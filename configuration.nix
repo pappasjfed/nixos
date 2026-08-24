@@ -25,7 +25,19 @@ environment.systemPackages = with pkgs; [
   podman
   podman-compose
   skopeo
+  tmux
+  ripgrep
+  fd
+  dnsutils
+  nmap
 ];
+
+users.users.nixos = {
+  isNormalUser = true;
+  extraGroups = [ "wheel" ];
+};
+
+programs.mtr.enable = true;
 
 virtualisation.podman = {
     enable = true;
@@ -37,6 +49,14 @@ environment.variables = {
   NIX_SSL_CERT_FILE = "/etc/nixos/certs/ca-bundle.crt";
   EDITOR = "vim";
   VISUAL= "vim";
+};
+
+services.openssh = {
+  enable = true;
+  settings = {
+    PasswordAuthentication = false;
+    PermitRootLogin = "no";
+  };
 };
 
 security.pki.certificates = [
