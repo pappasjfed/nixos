@@ -22,11 +22,21 @@ environment.systemPackages = with pkgs; [
   gnupg
   openssl
   bash-completion
+  podman
+  podman-compose
+  skopeo
 ];
+
+virtualisation.podman = {
+    enable = true;
+    dockerCompat = true;
+};
 
 environment.variables = {
   SSL_CERT_FILE = "/etc/nixos/certs/ca-bundle.crt";
   NIX_SSL_CERT_FILE = "/etc/nixos/certs/ca-bundle.crt";
+  EDITOR = "vim";
+  VISUAL= "vim";
 };
 
 security.pki.certificates = [
