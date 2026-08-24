@@ -10,6 +10,8 @@
 {
 environment.systemPackages = with pkgs; [
   git
+  git-lfs
+  git-credential-manager
   curl
   wget
   vim
