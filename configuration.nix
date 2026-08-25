@@ -32,6 +32,8 @@ environment.systemPackages = with pkgs; [
   fd
   dnsutils
   nmap
+  pass
+  gnupg
 ];
 
 users.users.nixos = {
@@ -49,6 +51,7 @@ virtualisation.podman = {
 environment.variables = {
   SSL_CERT_FILE = "/etc/nixos/certs/ca-bundle.crt";
   NIX_SSL_CERT_FILE = "/etc/nixos/certs/ca-bundle.crt";
+  GCM_CREDENTIAL_STORE = "gpg";  
   EDITOR = "vim";
   VISUAL= "vim";
 };
