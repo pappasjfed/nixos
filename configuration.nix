@@ -34,6 +34,8 @@ environment.systemPackages = with pkgs; [
   nmap
   pass
   gnupg
+  pinentry-curses
+  gh
 ];
 
 users.users.nixos = {
@@ -43,6 +45,14 @@ users.users.nixos = {
 
 programs.mtr.enable = true;
 programs.nix-ld.enable = true;
+
+programs.gnupg.agent = {
+  enable = true;
+  settings = {
+    default-cache-ttl = 3600;
+    max-cache-ttl = 86400;
+  };
+};
 
 virtualisation.podman = {
     enable = true;
