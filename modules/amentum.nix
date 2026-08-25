@@ -1,8 +1,8 @@
 {
   security.pki.certificates = [
-    ../certs/amentumrootca2022.cer
-    ../certs/proxy_services.cer
-    ../certs/amentum_decryption.cer
+    "../certs/amentumrootca2022.cer"
+    "../certs/proxy_services.cer"
+    "../certs/amentum_decryption.cer"
   ];
 
   environment.variables = {
