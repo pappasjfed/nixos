@@ -42,6 +42,7 @@ users.users.nixos = {
 };
 
 programs.mtr.enable = true;
+programs.nix-ld.enable = true;
 
 virtualisation.podman = {
     enable = true;
