@@ -1,8 +1,8 @@
 {
   security.pki.certificates = [
-    (builtins.readFile ../../certs/amentum_decryption.cer)
-    (builtins.readFile ../../certs/amentumrootca2022.cer)
-    (builtins.readFile ../../certs/proxy_services.cer)
+    (builtins.readFile ../certs/amentum_decryption.cer)
+    (builtins.readFile ../certs/amentumrootca2022.cer)
+    (builtins.readFile ../certs/proxy_services.cer)
   ];
 
   environment.variables = {
