@@ -19,4 +19,3 @@
     kdePackages.spectacle
   ];
 }
-``
