@@ -2,19 +2,22 @@
 
 {
   imports = [
+    ./disco.nix
     ../../modules/base.nix
     ../../modules/nix.nix
     ../../modules/git.nix
     ../../modules/containers.nix
     ../../modules/openssh.nix
-    ../../modules/amentum.nix
+    ../../modules/btrfs.nix
   ];
 
-  wsl.enable = true;
-  wsl.defaultUser = "jpappas";
+boot.loader.systemd-boot.enable = true;
+boot.loader.efi.canTouchEfiVariables = true;
 
   users.users.jpappas = {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
   };
+
+  networking.hostName = "nixos";
 }
