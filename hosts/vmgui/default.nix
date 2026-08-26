@@ -14,7 +14,6 @@
 
 boot.loader.systemd-boot.enable = true;
 boot.loader.efi.canTouchEfiVariables = true;
-services.open-vm-tools.enable = true;
 
   users.users.jpappas = {
     isNormalUser = true;
