@@ -12,9 +12,29 @@
 
     snapper.url =
       "github:nix-community/srvos";
+
+    home-manager = {
+      url = "github:nix-community/home-manager/release-26.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, nixos-wsl, disko, ... }:
+  
+  outputs = {
+    self,
+    nixpkgs,
+    nixos-wsl,
+    disko,
+    home-manager,
+    ...
+  }: 
+  
+  let
+    commonModules = [
+    home-manager.nixosModules.home-manager
+    ./modules/home-manager.nix
+    ];  
+  in
   {
     nixosConfigurations = {
 
@@ -23,7 +43,10 @@
 
         modules = [
           nixos-wsl.nixosModules.wsl
-          ./hosts/wsl/default.nix
+          home-manager.nixosModules.home-manager
+
+          ./modules/home-manager.nix
+          ./hosts/wsl
         ];
       };
 
@@ -32,7 +55,10 @@
 
         modules = [
           disko.nixosModules.disko
-          ./hosts/framework/default.nix
+          home-manager.nixosModules.home-manager
+
+          ./modules/home-manager.nix
+          ./hosts/framework
         ];
       };
     };
