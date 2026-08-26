@@ -11,7 +11,6 @@ sudo nixos-rebuild boot --flake ./#wsl
 sudo nixos-rebuild boot --flake #wsl
 sudo nixos-rebuild boot --flake .#wsl
 
-
 ## Generation management
 
 sudo nixos-rebuild list-generations
