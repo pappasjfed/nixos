@@ -9,6 +9,7 @@
     ../../modules/containers.nix
     ../../modules/openssh.nix
     ../../modules/btrfs.nix
+    ../../modules/gui-kde.nix
   ];
 
 boot.loader.systemd-boot.enable = true;
@@ -20,5 +21,5 @@ services.open-vm-tools.enable = true;
     extraGroups = [ "wheel" ];
   };
 
-  networking.hostName = "nixos";
+  networking.hostName = "nixos-gui";
 }
