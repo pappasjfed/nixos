@@ -41,24 +41,20 @@
       wsl = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
 
-        modules = [
+        modules = commonModules ++ [
           nixos-wsl.nixosModules.wsl
-          home-manager.nixosModules.home-manager
 
-          ./modules/home-manager.nix
           ./hosts/wsl
         ];
       };
 
-      framework = nixpkgs.lib.nixosSystem {
+      vm = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
 
-        modules = [
+        modules = commonModules ++ [
           disko.nixosModules.disko
-          home-manager.nixosModules.home-manager
 
-          ./modules/home-manager.nix
-          ./hosts/framework
+          ./hosts/vm
         ];
       };
     };
