@@ -18,6 +18,7 @@
     fd
     dnsutils
     nmap
+    direnv
   ];
 
   environment.variables = {
