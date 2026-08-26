@@ -57,6 +57,16 @@
           ./hosts/vm
         ];
       };
+
+      vmgui = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+
+        modules = commonModules ++ [
+          disko.nixosModules.disko
+
+          ./hosts/vmgui
+        ];
+      };
     };
   };
 }
