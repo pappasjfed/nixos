@@ -8,7 +8,6 @@ nixos-rebuild switch --flake ./#<CONF>
 ## WSL
 
 sudo nixos-rebuild boot --flake ./#wsl
-sudo nixos-rebuild boot --flake #wsl
 sudo nixos-rebuild boot --flake .#wsl
 
 ## Generation management
