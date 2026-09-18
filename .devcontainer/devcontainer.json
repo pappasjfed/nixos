@@ -1,0 +1,16 @@
+{
+  "name": "nixos flake",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+  "remoteUser": "vscode",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "jnoortheen.nix-ide"
+      ]
+    }
+  },
+  "postCreateCommand": "bash -lc 'nix --version && nix flake show .'"
+}

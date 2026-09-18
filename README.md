@@ -24,6 +24,21 @@ nix eval .#nixosConfigurations.wsl.config.system.stateVersion
 sudo nixos-rebuild dry-build --flake .#wsl
 sudo nixos-rebuild dry-build --flake .#vm
 
+## Devcontainer
+
+This repository includes a `.devcontainer` that installs single-user Nix and enables `nix-command` and `flakes` inside the container.
+
+1. Open `/home/runner/work/nixos/nixos` in VS Code or a compatible devcontainer client.
+2. Reopen the workspace in the devcontainer.
+3. Wait for the image build and post-create setup to finish.
+4. Run Nix commands such as:
+
+```bash
+nix --version
+nix flake show .
+nix build .#packages.x86_64-linux.installer-iso
+```
+
 ## Installer ISO
 
 ### Build locally
