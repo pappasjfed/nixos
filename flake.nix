@@ -30,16 +30,37 @@
   }: 
   
   let
+    system = "x86_64-linux";
+
     commonModules = [
-    home-manager.nixosModules.home-manager
-    ./modules/home-manager.nix
-    ];  
+      home-manager.nixosModules.home-manager
+      ./modules/home-manager.nix
+    ];
+
+    installerConfiguration = nixpkgs.lib.nixosSystem {
+      inherit system;
+
+      modules = [
+        "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
+        ./modules/base.nix
+        ./modules/nix.nix
+        ({ lib, pkgs, ... }: {
+          networking.hostName = "nixos-installer";
+
+          environment.systemPackages = with pkgs; [
+            git
+          ];
+
+          environment.etc."nixos".source = lib.mkForce self.outPath;
+        })
+      ];
+    };
   in
   {
     nixosConfigurations = {
 
       wsl = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
+        inherit system;
 
         modules = commonModules ++ [
           nixos-wsl.nixosModules.wsl
@@ -49,7 +70,7 @@
       };
 
       vm = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
+        inherit system;
 
         modules = commonModules ++ [
           disko.nixosModules.disko
@@ -59,7 +80,7 @@
       };
 
       vmgui = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
+        inherit system;
 
         modules = commonModules ++ [
           disko.nixosModules.disko
@@ -67,6 +88,11 @@
           ./hosts/vmgui
         ];
       };
+
+      installer = installerConfiguration;
     };
+
+    packages.${system}.installer-iso =
+      installerConfiguration.config.system.build.isoImage;
   };
 }
